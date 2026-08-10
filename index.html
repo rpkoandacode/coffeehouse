@@ -8,8 +8,17 @@
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+    }
+}
+</script>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -32,23 +41,21 @@
   <section class="hero">
 
     <div class="hero-text">
-      <h1>Freshly Brewed Coffee, Crafted with Passion</h1>
+        <h1>Freshly brewed, crafted with passion.</h1>
 
-      <p>
-        Experience premium coffee made from carefully selected beans.
-        Order your favorite drinks online and enjoy the perfect cup every day.
-      </p>
+        <p>
+            Discover carefully crafted coffee made with passion
+            and served fresh for every moment.
+        </p>
 
-      <a href="#" class="btn">Order Now</a>
+        <a href="menu.html" class="btn">Order Now</a>
     </div>
 
-    <div class="hero-3d" id="coffee-canvas">
-      <!-- 3D coffee cup will go here -->
-    </div>
+    <div class="hero-3d" id="coffee-cup"></div>
 
-  </section>
+</section>
 
-  <script src="js/script.js"></script>
+  <script type="module" src="js/script.js"></script>
 
 </body>
 </html>
