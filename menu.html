@@ -72,8 +72,120 @@
 
 </main>
 
+<!-- Product Customization Modal -->
+
+<div class="modal-overlay" id="product-modal">
+
+<div class="modal">
+
+    <div class="modal-header">
+
+        <h2 id="modal-title">Customize Drink</h2>
+
+        <button id="close-modal">&times;</button>
+
+    </div>
+
+    <div class="modal-content">
+
+        <div class="option-group">
+
+            <label>Temperature</label>
+
+            <div class="option-buttons" data-option="temperature">
+
+                <button class="option-btn active" data-value="Ice">
+                    Ice
+                </button>
+
+                <button class="option-btn" data-value="Hot">
+                    Hot
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="option-group">
+
+            <label>Sugar Level</label>
+
+            <div class="option-buttons" data-option="sugar">
+
+                <button class="option-btn" data-value="No sugar">
+                    No sugar
+                </button>
+
+                <button class="option-btn" data-value="30%">
+                    30%
+                </button>
+
+                <button class="option-btn active" data-value="Less sugar (50%)">
+                    Less sugar (50%)
+                </button>
+
+                <button class="option-btn" data-value="Normal sugar (100%)">
+                    Normal sugar (100%)
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="option-group">
+
+            <label>Ice Level</label>
+
+            <div class="option-buttons" data-option="ice">
+
+                <button class="option-btn active" data-value="Normal ice">
+                    Normal ice
+                </button>
+
+                <button class="option-btn" data-value="Less ice">
+                    Less ice
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="option-group" id="milk-section">
+
+            <label>Milk Option</label>
+
+            <div class="option-buttons" data-option="milk">
+
+                <button class="option-btn active" data-value="Regular cow milk">
+                    Regular cow milk
+                </button>
+
+                <button class="option-btn" data-value="Oat milk">
+                    Oat milk
+                </button>
+
+                <button class="option-btn" data-value="Soy milk">
+                    Soy milk
+                </button>
+
+            </div>
+
+        </div>
+
+        <button id="confirm-add" class="btn">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
 <script src="js/data.js"></script>
+
 <script src="js/cart.js"></script>
+
 <script src="js/menu.js"></script>
 
 </body>

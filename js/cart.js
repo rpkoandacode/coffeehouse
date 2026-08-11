@@ -6,35 +6,8 @@ function saveCart(cart) {
     localStorage.setItem('coffeehouse-cart', JSON.stringify(cart));
 }
 
-function addToCart(productId) {
-
-    const cart = getCart();
-
-    const existingItem = cart.find(item => item.id === productId);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-
-        const product = products.find(item => item.id === productId);
-
-        cart.push({
-            ...product,
-            quantity: 1
-        });
-    }
-
-    saveCart(cart);
-
-    updateCartCount();
-
-    alert('Added to cart!');
-}
-
 function updateCartCount() {
-
     const cart = getCart();
-
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     document.querySelectorAll('.cart-link').forEach(link => {
@@ -42,20 +15,57 @@ function updateCartCount() {
     });
 }
 
-updateCartCount();
+function generateCartItemId(productId, options) {
+    return `${productId}-${options.temperature}-${options.sugar}-${options.ice}-${options.milk || 'none'}`;
+}
 
-function changeQuantity(productId, amount) {
+function addToCart(productId, options = {}) {
+
+    const cart = getCart();
+    const product = products.find(item => item.id === productId);
+
+    const cartItemId = generateCartItemId(productId, options);
+
+    const existingItem = cart.find(item => item.cartItemId === cartItemId);
+
+    if (existingItem) {
+
+        existingItem.quantity += 1;
+
+    } else {
+
+        cart.push({
+            cartItemId,
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            temperature: options.temperature,
+            sugar: options.sugar,
+            ice: options.ice,
+            milk: options.milk
+        });
+
+    }
+
+    saveCart(cart);
+    updateCartCount();
+    renderCart();
+}
+
+function changeQuantity(cartItemId, amount) {
 
     const cart = getCart();
 
-    const item = cart.find(item => item.id === productId);
+    const item = cart.find(item => item.cartItemId === cartItemId);
 
     if (!item) return;
 
     item.quantity += amount;
 
     if (item.quantity <= 0) {
-        const index = cart.findIndex(item => item.id === productId);
+        const index = cart.findIndex(item => item.cartItemId === cartItemId);
         cart.splice(index, 1);
     }
 
@@ -64,11 +74,11 @@ function changeQuantity(productId, amount) {
     renderCart();
 }
 
-function removeItem(productId) {
+function removeItem(cartItemId) {
 
     let cart = getCart();
 
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter(item => item.cartItemId !== cartItemId);
 
     saveCart(cart);
     updateCartCount();
@@ -94,9 +104,10 @@ function renderCart() {
         `;
 
         return;
+
     }
 
-    const total = cart.reduce(
+    const subtotal = cart.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
     );
@@ -114,23 +125,54 @@ function renderCart() {
                     >
 
                     <div class="cart-info">
+
                         <h3>${item.name}</h3>
-                        <p>Rp ${item.price.toLocaleString('id-ID')}</p>
+
+                        <div class="cart-details">
+
+                            <p>
+                                <strong>Temperature:</strong>
+                                ${item.temperature}
+                            </p>
+
+                            <p>
+                                <strong>Sugar:</strong>
+                                ${item.sugar}
+                            </p>
+
+                            <p>
+                                <strong>Ice:</strong>
+                                ${item.ice}
+                            </p>
+
+                            ${item.milk ? `
+                                <p>
+                                    <strong>Milk:</strong>
+                                    ${item.milk}
+                                </p>
+                            ` : ''}
+
+                        </div>
+
+                        <p class="cart-price">
+                            Rp ${item.price.toLocaleString('id-ID')}
+                        </p>
+
                     </div>
 
                     <div class="cart-actions">
 
-                        <button onclick="changeQuantity(${item.id}, -1)">-</button>
+                        <button onclick="changeQuantity('${item.cartItemId}', -1)">-</button>
 
                         <span>${item.quantity}</span>
 
-                        <button onclick="changeQuantity(${item.id}, 1)">+</button>
+                        <button onclick="changeQuantity('${item.cartItemId}', 1)">+</button>
 
                     </div>
 
                     <button
                         class="remove-btn"
-                        onclick="removeItem(${item.id})"
+                        onclick="removeItem('${item.cartItemId}')"
                     >
                         Remove
                     </button>
@@ -140,10 +182,12 @@ function renderCart() {
 
             <div class="cart-total">
 
-                <h3>
-                    Total:
-                    Rp ${total.toLocaleString('id-ID')}
-                </h3>
+                <div>
+                    <p>Subtotal</p>
+                    <h3>
+                        Rp ${subtotal.toLocaleString('id-ID')}
+                    </h3>
+                </div>
 
                 <a href="checkout.html" class="btn">
                     Proceed to Checkout
@@ -155,4 +199,5 @@ function renderCart() {
     `;
 }
 
+updateCartCount();
 renderCart();

@@ -438,6 +438,23 @@ header {
     margin-bottom: 24px;
 }
 
+.cart-details {
+    margin: 12px 0;
+    display: grid;
+    gap: 6px;
+}
+
+.cart-details p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.cart-price {
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 10px;
+}
+
 @media (max-width: 700px) {
 
     .cart-item {
@@ -458,4 +475,99 @@ header {
         gap: 16px;
         text-align: center;
     }
+}
+
+.option-group {
+    margin-bottom: 24px;
+}
+
+.option-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    padding: 12px 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.option-btn.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+
+/* =========================
+   Modal
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+}
+
+#close-modal {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.modal-content {
+    padding: 24px;
+}
+
+.modal-content .btn {
+    width: 100%;
+    margin-top: 12px;
 }
