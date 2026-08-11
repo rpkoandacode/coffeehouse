@@ -81,7 +81,7 @@ const products = [
     name: "Cheesecake",
     category: "Food",
     price: 45000,
-    image: "images/food/cheesecake.jpg",
+    image: "images/food/cheesecake.webp",
     description: "Creamy classic cheesecake."
   }
 ];

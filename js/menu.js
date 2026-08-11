@@ -54,9 +54,5 @@ filterButtons.forEach(button => {
 
 });
 
-function addToCart(productId) {
-    const product = products.find(item => item.id === productId);
-    alert(`${product.name} added to cart!`);
-}
 
 displayProducts();
