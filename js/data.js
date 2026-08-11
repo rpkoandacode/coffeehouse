@@ -65,5 +65,23 @@ const products = [
     price: 38000,
     image: "images/non-coffee/chocolate.webp",
     description: "Rich chocolate blended with creamy milk."
+  },
+
+  // Food
+  {
+    id: 9,
+    name: "Butter Croissant",
+    category: "Food",
+    price: 28000,
+    image: "images/food/croissant.jpg",
+    description: "Freshly baked buttery croissant."
+  },
+  {
+    id: 10,
+    name: "Cheesecake",
+    category: "Food",
+    price: 45000,
+    image: "images/food/cheesecake.jpg",
+    description: "Creamy classic cheesecake."
   }
 ];
