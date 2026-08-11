@@ -225,8 +225,8 @@ header {
 .drink-image {
     width: 100%;
     aspect-ratio: 1;
+    object-fit: cover;
     border-radius: 16px;
-    background: #4A2E20;
     margin-bottom: 18px;
 }
 

@@ -13,7 +13,7 @@ const products = [
     name: "Americano",
     category: "Coffee",
     price: 28000,
-    image: "images/coffee/americano.jpg",
+    image: "images/coffee/Americano.jpg",
     description: "Smooth espresso diluted with hot water."
   },
   {
@@ -29,7 +29,7 @@ const products = [
     name: "Cafe Latte",
     category: "Coffee",
     price: 38000,
-    image: "images/coffee/latte.jpg",
+    image: "images/coffee/latte.webp",
     description: "Creamy milk with smooth espresso."
   },
   {
@@ -63,7 +63,7 @@ const products = [
     name: "Chocolate",
     category: "Non Coffee",
     price: 38000,
-    image: "images/non-coffee/chocolate.jpg",
+    image: "images/non-coffee/chocolate.webp",
     description: "Rich chocolate blended with creamy milk."
   }
 ];
