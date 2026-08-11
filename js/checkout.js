@@ -64,20 +64,42 @@ renderCheckout();
 
 document.getElementById('place-order-btn').addEventListener('click', async () => {
 
+    const customerName = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+
+    if (!customerName || !phone) {
+        alert('Please enter your name and phone number.');
+        return;
+    }
+
+    const order = {
+        orderNumber: `CH${Date.now().toString().slice(-6)}`,
+        customerName,
+        phone,
+        orderType: document.getElementById('order-type').value,
+        pickupTime: document.getElementById('pickup-time').value,
+        notes: document.getElementById('order-notes').value,
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+        status: 'New',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
     try {
 
-        await db.collection('orders').add({
-            test: true,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        await db.collection('orders').add(order);
 
-        alert('Firebase connection successful!');
+        localStorage.setItem('last-order', JSON.stringify(order));
+
+        localStorage.removeItem('coffeehouse-cart');
+
+        window.location.href = 'success.html';
 
     } catch (error) {
 
         console.error(error);
 
-        alert('Firebase connection failed.');
+        alert('Failed to place order.');
 
     }
 
