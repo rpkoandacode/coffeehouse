@@ -16,13 +16,18 @@ function updateCartCount() {
 }
 
 function generateCartItemId(productId, options) {
-    return `${productId}-${options.temperature}-${options.sugar}-${options.ice}-${options.milk || 'none'}`;
+    return `${productId}-${options.size}-${options.temperature}-${options.sugar}-${options.ice}-${options.milk || 'none'}`;
 }
 
 function addToCart(productId, options = {}) {
 
     const cart = getCart();
     const product = products.find(item => item.id === productId);
+
+    const finalPrice =
+        options.size === 'Large'
+            ? product.price + 3000
+            : product.price;
 
     const cartItemId = generateCartItemId(productId, options);
 
@@ -38,10 +43,11 @@ function addToCart(productId, options = {}) {
             cartItemId,
             id: product.id,
             name: product.name,
-            price: product.price,
+            price: finalPrice,
             image: product.image,
             quantity: 1,
             temperature: options.temperature,
+            size: options.size,
             sugar: options.sugar,
             ice: options.ice,
             milk: options.milk
@@ -133,6 +139,11 @@ function renderCart() {
                             <p>
                                 <strong>Temperature:</strong>
                                 ${item.temperature}
+                            </p>
+
+                            <p>
+                                <strong>Size:</strong>
+                                ${item.size}
                             </p>
 
                             <p>

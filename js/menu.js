@@ -127,13 +127,14 @@ modal.addEventListener('click', (e) => {
 document.getElementById('confirm-add').addEventListener('click', () => {
 
     const options = {
-        temperature: getSelectedOption('temperature'),
-        sugar: getSelectedOption('sugar'),
-        ice: getSelectedOption('ice'),
-        milk: document.getElementById('milk-section').style.display === 'none'
-            ? null
-            : getSelectedOption('milk')
-    };
+    size: getSelectedOption('size'),
+    temperature: getSelectedOption('temperature'),
+    sugar: getSelectedOption('sugar'),
+    ice: getSelectedOption('ice'),
+    milk: document.getElementById('milk-section').style.display === 'none'
+        ? null
+        : getSelectedOption('milk')
+};
 
     addToCart(selectedProduct.id, options);
 
