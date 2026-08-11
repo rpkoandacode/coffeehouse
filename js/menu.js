@@ -77,6 +77,10 @@ document.addEventListener('click', function(e) {
 
     e.target.classList.add('active');
 
+    if (group.dataset.option === 'temperature') {
+        updateIceVisibility();
+    }
+
 });
 
 function getSelectedOption(groupName) {
@@ -86,6 +90,22 @@ function getSelectedOption(groupName) {
     );
 
     return active ? active.dataset.value : null;
+
+}
+
+function updateIceVisibility() {
+
+    const temperature = getSelectedOption('temperature');
+
+    const iceGroup = document.querySelector(
+        '[data-option="ice"]'
+    ).closest('.option-group');
+
+    if (temperature === 'Hot') {
+        iceGroup.style.display = 'none';
+    } else {
+        iceGroup.style.display = 'block';
+    }
 
 }
 
@@ -132,6 +152,8 @@ function openProductModal(productId) {
 
     });
 
+    updateIceVisibility();
+
     modal.classList.add('show');
 }
 
@@ -156,7 +178,9 @@ document.getElementById('confirm-add').addEventListener('click', () => {
 
     sugar: getSelectedOption('sugar'),
 
-    ice: getSelectedOption('ice'),
+    ice: document.querySelector('[data-option="ice"]').closest('.option-group').style.display === 'none'
+    ? null
+    : getSelectedOption('ice'),
 
     milk: document.getElementById('milk-section').style.display === 'none'
         ? null
