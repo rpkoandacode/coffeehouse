@@ -5,7 +5,7 @@ const products = [
     name: "Espresso",
     category: "Coffee",
     price: 25000,
-    image: "images/coffee/espresso.jpg",
+    image: "images/coffee/espresso.webp",
     description: "A bold and concentrated shot of espresso."
   },
   {
@@ -37,7 +37,7 @@ const products = [
     name: "Flat White",
     category: "Coffee",
     price: 38000,
-    image: "images/coffee/flat-white.jpg",
+    image: "images/coffee/flat-white.webp",
     description: "Velvety steamed milk with double espresso."
   },
   {
@@ -45,7 +45,7 @@ const products = [
     name: "Mocha",
     category: "Coffee",
     price: 42000,
-    image: "images/coffee/mocha.jpg",
+    image: "images/coffee/mocha.png",
     description: "Chocolate and espresso combined into one drink."
   },
 
