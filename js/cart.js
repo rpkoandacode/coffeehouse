@@ -136,25 +136,33 @@ function renderCart() {
 
                         <div class="cart-details">
 
-                            <p>
-                                <strong>Temperature:</strong>
-                                ${item.temperature}
-                            </p>
+                            ${item.size ? `
+                                <p>
+                                    <strong>Size:</strong>
+                                    ${item.size}
+                                </p>
+                            ` : ''}
 
-                            <p>
-                                <strong>Size:</strong>
-                                ${item.size}
-                            </p>
+                            ${item.temperature ? `
+                                <p>
+                                    <strong>Temperature:</strong>
+                                    ${item.temperature}
+                                </p>
+                            ` : ''}
 
-                            <p>
-                                <strong>Sugar:</strong>
-                                ${item.sugar}
-                            </p>
+                            ${item.sugar ? `
+                                <p>
+                                    <strong>Sugar:</strong>
+                                    ${item.sugar}
+                                </p>
+                            ` : ''}
 
-                            <p>
-                                <strong>Ice:</strong>
-                                ${item.ice}
-                            </p>
+                            ${item.ice ? `
+                                <p>
+                                    <strong>Ice:</strong>
+                                    ${item.ice}
+                                </p>
+                            ` : ''}
 
                             ${item.milk ? `
                                 <p>
@@ -164,7 +172,6 @@ function renderCart() {
                             ` : ''}
 
                         </div>
-
                         <p class="cart-price">
                             Rp ${item.price.toLocaleString('id-ID')}
                         </p>

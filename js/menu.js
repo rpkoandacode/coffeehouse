@@ -97,11 +97,19 @@ function openProductModal(productId) {
 
     selectedProduct = products.find(p => p.id === productId);
 
-    document.getElementById('modal-title').textContent =
-        selectedProduct.name;
+    document.getElementById('modal-title').textContent = selectedProduct.name;
 
     const milkSection = document.getElementById('milk-section');
+    const sizeSection = document.getElementById('size-section');
 
+    // Show size only for drinks
+    if (selectedProduct.category === 'Food') {
+        sizeSection.style.display = 'none';
+    } else {
+        sizeSection.style.display = 'block';
+    }
+
+    // Show milk only for coffee drinks except Espresso and Americano
     if (
         selectedProduct.category === 'Coffee' &&
         !noMilkDrinks.includes(selectedProduct.name)
@@ -110,6 +118,19 @@ function openProductModal(productId) {
     } else {
         milkSection.style.display = 'none';
     }
+
+    // Reset all option buttons
+    document.querySelectorAll('.option-buttons').forEach(group => {
+
+        const buttons = group.querySelectorAll('.option-btn');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        if (buttons.length > 0) {
+            buttons[0].classList.add('active');
+        }
+
+    });
 
     modal.classList.add('show');
 }
@@ -127,10 +148,16 @@ modal.addEventListener('click', (e) => {
 document.getElementById('confirm-add').addEventListener('click', () => {
 
     const options = {
-    size: getSelectedOption('size'),
+    size: document.getElementById('size-section').style.display === 'none'
+        ? null
+        : getSelectedOption('size'),
+
     temperature: getSelectedOption('temperature'),
+
     sugar: getSelectedOption('sugar'),
+
     ice: getSelectedOption('ice'),
+
     milk: document.getElementById('milk-section').style.display === 'none'
         ? null
         : getSelectedOption('milk')
