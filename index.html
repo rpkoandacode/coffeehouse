@@ -1,54 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeHouse</title>
 
-  <title>CoffeeHouse</title>
-
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
+<header>
     <nav class="navbar">
-      <div class="logo">CoffeeHouse</div>
+        <div class="logo">CoffeeHouse</div>
 
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="cart.html" class="cart-link">Cart (0)</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <!-- Hero -->
-  <section class="hero">
+<main>
+
+<section class="hero">
 
     <div class="hero-text">
-        <h1>Freshly brewed, crafted with passion.</h1>
+
+        <span class="hero-tag">Premium Coffee Experience</span>
+
+        <h1>
+            Freshly brewed coffee,
+            crafted for every moment.
+        </h1>
 
         <p>
-            Discover carefully crafted coffee made with passion
-            and served fresh for every moment.
+            Discover signature coffee made from carefully selected beans,
+            handcrafted by passionate baristas, and available for pickup
+            or delivery.
         </p>
 
-        <a href="menu.html" class="btn">Order Now</a>
+        <div class="hero-buttons">
+            <a href="menu.html" class="btn">Order Now</a>
+            <a href="#featured" class="btn-outline">View Menu</a>
+        </div>
+
     </div>
 
-    <div class="hero-3d"></div>
+    <div class="hero-image">
+
+        <div class="coffee-placeholder">
+            Coffee Image
+        </div>
+
+    </div>
 
 </section>
 
-  <script src="js/script.js"></script>
+<section class="featured" id="featured">
+
+    <div class="section-title">
+        <span>Our Favorites</span>
+        <h2>Featured Drinks</h2>
+        <p>
+            The drinks our customers love the most.
+        </p>
+    </div>
+
+    <div class="featured-grid">
+
+        <div class="drink-card">
+
+            <div class="drink-image"></div>
+
+            <h3>Signature Latte</h3>
+
+            <p>
+                Smooth espresso with creamy milk.
+            </p>
+
+            <div class="drink-bottom">
+                <span class="price">Rp 38.000</span>
+                <button>Add</button>
+            </div>
+
+        </div>
+
+        <div class="drink-card">
+
+            <div class="drink-image"></div>
+
+            <h3>Americano</h3>
+
+            <p>
+                Rich espresso with hot water.
+            </p>
+
+            <div class="drink-bottom">
+                <span class="price">Rp 28.000</span>
+                <button>Add</button>
+            </div>
+
+        </div>
+
+        <div class="drink-card">
+
+            <div class="drink-image"></div>
+
+            <h3>Matcha Latte</h3>
+
+            <p>
+                Premium Japanese matcha with milk.
+            </p>
+
+            <div class="drink-bottom">
+                <span class="price">Rp 42.000</span>
+                <button>Add</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
