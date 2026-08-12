@@ -72,7 +72,7 @@ const products = [
     id: 9,
     name: "Butter Croissant",
     category: "Food",
-    price: 28000,
+    price: 25000,
     image: "images/food/croissant.jpg",
     description: "Freshly baked buttery croissant."
   },
