@@ -159,7 +159,18 @@ header {
 .hero-image {
     display: flex;
     justify-content: center;
+
+}.hero-coffee-image {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    object-fit: contain;
+
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
+
+    animation: floatCoffee 4s ease-in-out infinite;
 }
+
 
 .coffee-placeholder {
     width: min(420px, 100%);
