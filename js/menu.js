@@ -45,8 +45,7 @@ function displayProducts(category = 'All') {
 
         </div>
     `).join('');
-
-    animateCards();
+    
 }
 
 filterButtons.forEach(button => {
@@ -193,28 +192,5 @@ document.getElementById('confirm-add').addEventListener('click', () => {
 
     modal.classList.remove('show');
 });
-
-function animateCards() {
-
-    const cards = document.querySelectorAll('.drink-card');
-
-    cards.forEach((card, index) => {
-
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(40px)';
-
-        setTimeout(() => {
-
-            card.style.transition =
-                'opacity 0.6s ease, transform 0.6s ease';
-
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-
-        }, index * 120);
-
-    });
-
-}
 
 displayProducts();
