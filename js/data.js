@@ -28,7 +28,7 @@ const products = [
     id: 4,
     name: "Cafe Latte",
     category: "Coffee",
-    price: 38000,
+    price: 35000,
     image: "images/coffee/latte.webp",
     description: "Creamy milk with smooth espresso."
   },
@@ -44,7 +44,7 @@ const products = [
     id: 6,
     name: "Mocha",
     category: "Coffee",
-    price: 42000,
+    price: 35000,
     image: "images/coffee/mocha.png",
     description: "Chocolate and espresso combined into one drink."
   },
@@ -80,7 +80,7 @@ const products = [
     id: 10,
     name: "Cheesecake",
     category: "Food",
-    price: 45000,
+    price: 42000,
     image: "images/food/cheesecake.webp",
     description: "Creamy classic cheesecake."
   }
