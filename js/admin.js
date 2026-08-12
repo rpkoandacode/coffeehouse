@@ -71,7 +71,16 @@ db.collection('orders')
                 <p><strong>Notes:</strong>
                     ${order.notes || '-'}
                 </p>
-            `;
+
+                ${order.status === 'Completed' ? `
+                    <button
+                        class="archive-btn"
+                        onclick="archiveOrder('${doc.id}')"
+                    >
+                        Archive Order
+                    </button>
+                ` : ''}
+                `;
 
             ordersContainer.appendChild(card);
 
@@ -105,3 +114,46 @@ db.collection('orders')
     }
 
 });
+
+document.addEventListener('change', async (e) => {
+
+    // status update code
+
+});
+
+async function archiveOrder(orderId) {
+
+    const confirmArchive = confirm(
+        'Archive this completed order?'
+    );
+
+    if (!confirmArchive) return;
+
+    try {
+
+        const orderRef = db.collection('orders').doc(orderId);
+
+        const orderDoc = await orderRef.get();
+
+        if (!orderDoc.exists) return;
+
+        const orderData = orderDoc.data();
+
+        await db.collection('order_history').add({
+            ...orderData,
+            archivedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        await orderRef.delete();
+
+        alert('Order archived successfully.');
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert('Failed to archive order.');
+
+    }
+
+}
