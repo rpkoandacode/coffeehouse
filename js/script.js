@@ -28,20 +28,9 @@ function displayFeaturedProducts() {
                     ${formatPrice(product.price)}
                 </span>
 
-                <button onclick="addToCart(${product.id})">
-                    Add
-                </button>
-
             </div>
-
         </div>
     `).join('');
-}
-
-function addToCart(productId) {
-    const product = products.find(item => item.id === productId);
-
-    alert(`${product.name} added to cart!`);
 }
 
 displayFeaturedProducts();

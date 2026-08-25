@@ -362,6 +362,30 @@ header {
     cursor: pointer;
 }
 
+.featured-menu-btn {
+    display: block;
+    width: fit-content;
+
+    margin: 40px auto 0;
+
+    padding: 14px 30px;
+
+    background: #f5ba06;
+    color: #24150F;
+
+    border: 1px solid #f5ba06;
+    border-radius: 999px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.featured-menu-btn:hover {
+    transform: translateY(-3px);
+}
+
 /* =========================
    Responsive
 ========================= */
