@@ -67,6 +67,15 @@ const products = [
     description: "Rich chocolate blended with creamy milk."
   },
 
+  {
+    id: 8,
+    name: "Thai Tea",
+    category: "Non Coffee",
+    price: 38000,
+    image: "images/non-coffee/thaitea.png",
+    description: "reamy Thai tea with rich tea notes and a smooth, sweet finish."
+  },
+
   // Food
   {
     id: 9,
@@ -80,8 +89,17 @@ const products = [
     id: 10,
     name: "Cheesecake",
     category: "Food",
-    price: 42000,
+    price: 28000,
     image: "images/food/cheesecake.webp",
     description: "Creamy classic cheesecake."
+  },
+  {
+    id: 11,
+    name: "Banana Cake",
+    category: "Food",
+    price: 26000,
+    image: "images/food/banana.jpg",
+    description: "Soft, moist banana cake with a warm, naturally sweet flavor."
   }
+
 ];
