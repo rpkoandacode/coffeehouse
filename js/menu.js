@@ -62,6 +62,7 @@ filterButtons.forEach(button => {
 
 });
 
+
 // =========================
 // Option Buttons
 // =========================
@@ -84,6 +85,7 @@ document.addEventListener('click', function(e) {
 
 });
 
+
 function getSelectedOption(groupName) {
 
     const active = document.querySelector(
@@ -94,13 +96,20 @@ function getSelectedOption(groupName) {
 
 }
 
+
 function updateIceVisibility() {
 
     const temperature = getSelectedOption('temperature');
 
-    const iceGroup = document.querySelector(
+    const iceOption = document.querySelector(
         '[data-option="ice"]'
-    ).closest('.option-group');
+    );
+
+    if (!iceOption) return;
+
+    const iceGroup = iceOption.closest('.option-group');
+
+    if (!iceGroup) return;
 
     if (temperature === 'Hot') {
         iceGroup.style.display = 'none';
@@ -110,6 +119,7 @@ function updateIceVisibility() {
 
 }
 
+
 // =========================
 // Product Modal
 // =========================
@@ -118,34 +128,94 @@ function openProductModal(productId) {
 
     selectedProduct = products.find(p => p.id === productId);
 
-    document.getElementById('modal-title').textContent = selectedProduct.name;
+    document.getElementById('modal-title').textContent =
+        selectedProduct.name;
 
-    const milkSection = document.getElementById('milk-section');
     const sizeSection = document.getElementById('size-section');
+    const milkSection = document.getElementById('milk-section');
 
-    // Show size only for drinks
+    // Find specification groups
+    const temperatureGroup = document.querySelector(
+        '[data-option="temperature"]'
+    )?.closest('.option-group');
+
+    const sugarGroup = document.querySelector(
+        '[data-option="sugar"]'
+    )?.closest('.option-group');
+
+    const iceGroup = document.querySelector(
+        '[data-option="ice"]'
+    )?.closest('.option-group');
+
+    // =========================
+    // FOOD
+    // =========================
+
     if (selectedProduct.category === 'Food') {
+
+        // Hide all specifications for food
         sizeSection.style.display = 'none';
-    } else {
-        sizeSection.style.display = 'block';
-    }
-
-    // Show milk only for coffee drinks except Espresso and Americano
-    if (
-        selectedProduct.category === 'Coffee' &&
-        !noMilkDrinks.includes(selectedProduct.name)
-    ) {
-        milkSection.style.display = 'block';
-    } else {
         milkSection.style.display = 'none';
+
+        if (temperatureGroup) {
+            temperatureGroup.style.display = 'none';
+        }
+
+        if (sugarGroup) {
+            sugarGroup.style.display = 'none';
+        }
+
+        if (iceGroup) {
+            iceGroup.style.display = 'none';
+        }
+
     }
 
-    // Reset all option buttons
+    // =========================
+    // DRINKS
+    // =========================
+
+    else {
+
+        // Show size for drinks
+        sizeSection.style.display = 'block';
+
+        // Show temperature
+        if (temperatureGroup) {
+            temperatureGroup.style.display = 'block';
+        }
+
+        // Show sugar
+        if (sugarGroup) {
+            sugarGroup.style.display = 'block';
+        }
+
+        // Milk only for certain coffee drinks
+        if (
+            selectedProduct.category === 'Coffee' &&
+            !noMilkDrinks.includes(selectedProduct.name)
+        ) {
+            milkSection.style.display = 'block';
+        } else {
+            milkSection.style.display = 'none';
+        }
+
+        // Ice is controlled by temperature
+        if (iceGroup) {
+            iceGroup.style.display = 'block';
+        }
+
+    }
+
+
+    // Reset option buttons
     document.querySelectorAll('.option-buttons').forEach(group => {
 
         const buttons = group.querySelectorAll('.option-btn');
 
-        buttons.forEach(btn => btn.classList.remove('active'));
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
 
         if (buttons.length > 0) {
             buttons[0].classList.add('active');
@@ -153,44 +223,81 @@ function openProductModal(productId) {
 
     });
 
-    updateIceVisibility();
+
+    // Only update ice for drinks
+    if (selectedProduct.category !== 'Food') {
+        updateIceVisibility();
+    }
+
 
     modal.classList.add('show');
+
 }
+
 
 closeModal.addEventListener('click', () => {
     modal.classList.remove('show');
 });
 
+
 modal.addEventListener('click', (e) => {
+
     if (e.target === modal) {
         modal.classList.remove('show');
     }
+
 });
+
+
+// =========================
+// Add To Cart
+// =========================
 
 document.getElementById('confirm-add').addEventListener('click', () => {
 
-    const options = {
-    size: document.getElementById('size-section').style.display === 'none'
-        ? null
-        : getSelectedOption('size'),
+    let options = {};
 
-    temperature: getSelectedOption('temperature'),
+    // Food doesn't need any specifications
+    if (selectedProduct.category === 'Food') {
 
-    sugar: getSelectedOption('sugar'),
+        options = {
+            productType: selectedProduct.name
+        };
 
-    ice: document.querySelector('[data-option="ice"]').closest('.option-group').style.display === 'none'
-    ? null
-    : getSelectedOption('ice'),
+    }
 
-    milk: document.getElementById('milk-section').style.display === 'none'
-        ? null
-        : getSelectedOption('milk')
-};
+    // Drinks keep their specifications
+    else {
+
+        options = {
+
+            size: getSelectedOption('size'),
+
+            temperature: getSelectedOption('temperature'),
+
+            sugar: getSelectedOption('sugar'),
+
+            ice: document.querySelector(
+                '[data-option="ice"]'
+            ).closest('.option-group').style.display === 'none'
+                ? null
+                : getSelectedOption('ice'),
+
+            milk: document.getElementById('milk-section')
+                .style.display === 'none'
+                ? null
+                : getSelectedOption('milk')
+
+        };
+
+    }
+
 
     addToCart(selectedProduct.id, options);
 
     modal.classList.remove('show');
+
 });
+
 
 displayProducts();

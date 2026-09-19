@@ -39,20 +39,26 @@ function addToCart(productId, options = {}) {
 
     } else {
 
-        cart.push({
+        const cartItem = {
             cartItemId,
             id: product.id,
             name: product.name,
+            category: product.category,
             price: finalPrice,
             image: product.image,
-            quantity: 1,
-            temperature: options.temperature,
-            size: options.size,
-            sugar: options.sugar,
-            ice: options.ice,
-            milk: options.milk
-        });
+            quantity: 1
+        };
 
+        // Only drinks have these options
+        if (product.category !== 'Food') {
+            cartItem.temperature = options.temperature;
+            cartItem.size = options.size;
+            cartItem.sugar = options.sugar;
+            cartItem.ice = options.ice;
+            cartItem.milk = options.milk;
+        }
+
+        cart.push(cartItem);
     }
 
     saveCart(cart);

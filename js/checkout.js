@@ -28,14 +28,31 @@ function renderCheckout() {
 
                 <h3>${item.name} × ${item.quantity}</h3>
 
-                <p><strong>Size:</strong> ${item.size || 'Regular'}</p>
-                <p><strong>Temperature:</strong> ${item.temperature}</p>
-                <p><strong>Sugar:</strong> ${item.sugar}</p>
-                <p><strong>Ice:</strong> ${item.ice}</p>
+                ${
+                    item.category !== 'Food'
+                    ? `
+                        ${item.size ? `
+                            <p><strong>Size:</strong> ${item.size}</p>
+                        ` : ''}
 
-                ${item.milk ? `
-                    <p><strong>Milk:</strong> ${item.milk}</p>
-                ` : ''}
+                        ${item.temperature ? `
+                            <p><strong>Temperature:</strong> ${item.temperature}</p>
+                        ` : ''}
+
+                        ${item.sugar ? `
+                            <p><strong>Sugar:</strong> ${item.sugar}</p>
+                        ` : ''}
+
+                        ${item.ice ? `
+                            <p><strong>Ice:</strong> ${item.ice}</p>
+                        ` : ''}
+
+                        ${item.milk ? `
+                            <p><strong>Milk:</strong> ${item.milk}</p>
+                        ` : ''}
+                    `
+                    : ''
+                }
 
                 <p class="checkout-price">
                     Rp ${(item.price * item.quantity).toLocaleString('id-ID')}
