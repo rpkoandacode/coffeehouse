@@ -1,3 +1,11 @@
+firebase.auth().onAuthStateChanged((user) => {
+
+    if (!user) {
+        window.location.href = 'admin-login.html';
+    }
+
+});
+
 const ordersContainer = document.getElementById('orders-container');
 const totalOrders = document.getElementById('total-orders');
 const newOrders = document.getElementById('new-orders');
@@ -25,7 +33,7 @@ db.collection('orders')
 
             card.innerHTML = `
                 <div class="order-header">
-                    <h3>${order.orderNumber || 'Order'}</h3>
+                    <h3>Order #${order.orderNumber || '----'}</h3>
                     <select
                         class="status-select"
                         data-id="${doc.id}"
@@ -157,3 +165,11 @@ async function archiveOrder(orderId) {
     }
 
 }
+
+document.getElementById('logout-btn').addEventListener('click', async () => {
+
+    await firebase.auth().signOut();
+
+    window.location.href = 'admin-login.html';
+
+});

@@ -693,6 +693,74 @@ header {
 }
 
 /* =========================
+   Cart & Checkout Buttons
+========================= */
+
+.cart-total .btn,
+#place-order-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 14px 28px;
+
+    background: var(--accent);
+    color: var(--bg);
+
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.cart-total .btn:hover,
+#place-order-btn:hover {
+    transform: translateY(-2px);
+}
+
+.order-number-box {
+    margin: 28px auto;
+    padding: 20px;
+    max-width: 300px;
+
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.order-number-box span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.order-number-box strong {
+    display: block;
+
+    color: var(--accent);
+
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* =========================
    Modal
 ========================= */
 
@@ -851,8 +919,31 @@ header {
 }
 
 #place-order-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     width: 100%;
     margin-top: 24px;
+    padding: 14px 28px;
+
+    background: var(--accent);
+    color: var(--bg);
+
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+#place-order-btn:hover {
+    transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
@@ -1213,4 +1304,84 @@ header {
         padding: 50px 0 20px;
     }
 
+}
+
+.admin-login-form {
+    width: min(90%, 400px);
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-login-form input {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.admin-login-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.admin-login-form .btn {
+    width: 100%;
+    margin-top: 4px;
+
+    padding: 14px 28px;
+
+    background: var(--accent);
+    color: var(--bg);
+
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#login-error {
+    margin-top: 4px;
+    color: #e57373;
+    font-size: 14px;
+}
+
+#logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+
+    padding: 10px 20px;
+
+    background: transparent;
+    color: var(--text-muted);
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#logout-btn:hover {
+    background: var(--surface-light);
+    color: var(--text);
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
 }

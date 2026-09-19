@@ -1,37 +1,78 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Order Successful | CoffeeHouse</title>
 
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 
 <section class="featured">
 
-<div class="section-title">
+    <div class="section-title">
 
-    <span>Thank You</span>
+        <span>Thank You</span>
 
-    <h2>Your Order Has Been Received</h2>
+        <h2>Your Order Has Been Received</h2>
 
-    <p>
-        We are preparing your order. You will receive it shortly.
-    </p>
+        <p>
+            We are preparing your order. You will receive it shortly.
+        </p>
 
+        <div class="order-number-box">
 
+            <span>ORDER NUMBER</span>
 
-    <a href="index.html" class="btn">
-        Back to Home
-    </a>
+            <strong id="order-number">
+                #----
+            </strong>
 
-</div>
+        </div>
+
+        <p>
+            Please keep your order number for pickup.
+        </p>
+
+        <a href="index.html" class="btn">
+            Back to Home
+        </a>
+
+    </div>
 
 </section>
 
+
+<script>
+
+    const lastOrder =
+        JSON.parse(localStorage.getItem('last-order'));
+
+    const orderNumber =
+        document.getElementById('order-number');
+
+    if (lastOrder && lastOrder.orderNumber) {
+
+        orderNumber.textContent =
+            `#${lastOrder.orderNumber}`;
+
+    }
+
+</script>
+
 </body>
+
 </html>
+

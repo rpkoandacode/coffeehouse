@@ -37,7 +37,7 @@ function renderHistory(orders) {
         <div class="order-card">
 
             <div class="order-header">
-                <h3>${order.orderNumber}</h3>
+                <h3>Order #${order.orderNumber || '----'}</h3>
                 <span class="status-badge">
                     Completed
                 </span>

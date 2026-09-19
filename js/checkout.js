@@ -97,10 +97,10 @@ document.getElementById('place-order-btn').addEventListener('click', async () =>
 
     } catch (error) {
 
-        console.error(error);
+    console.error('Order error:', error);
 
-        alert('Failed to place order.');
+    alert('Failed to place order: ' + error.message);
 
-    }
+}
 
 });
